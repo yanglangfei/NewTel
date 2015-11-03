@@ -15,6 +15,8 @@ import android.view.View;
 
 /**
  * Created by Administrator on 2015/11/3.
+ *
+ *     360悬浮进度条
  */
 public class CircleProgress extends View {
 

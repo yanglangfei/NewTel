@@ -18,6 +18,8 @@ import com.ylf.jucaipen.newtel.R;
 
 /**
  * Created by Administrator on 2015/11/3.
+ *
+ *   触摸蒙层
  */
 public class MyBitmapViewAnother extends View {
     private Paint mPaint;   //触摸画笔
