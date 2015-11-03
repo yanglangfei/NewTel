@@ -31,10 +31,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private EditText mEditTextInput;//输入框
     private ListView mListView;//显示消息的ListView
     private GridView mGridView;//显示表情的GridView
-//    private PopupWindow mPopupWindow;
-//    private LinearLayout mLinearLayout;
-//    private LayoutInflater mInflater;
-
     private ImageButton mImageButtonExpression;//弹出和收回表情框的按钮
     private Spanned mSpanned;//富文本
     private Html.ImageGetter mImageGetter;//获得富文本图片
@@ -60,16 +56,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mEditTextInput = (EditText) findViewById(R.id.edittext_input);
         mImageButtonExpression = (ImageButton) findViewById(R.id.imagebutton_expression);
         mListView = (ListView) findViewById(R.id.listview);
-//        mLinearLayout = (LinearLayout) findViewById(R.id.linearlayout);
-//        mPopupWindow = new PopupWindow(MainActivity.this);
-//        mPopupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-//        mPopupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-//        View popupView = mInflater.inflate(R.layout.popupwindow, null);
-//        mPopupWindow.setContentView(popupView);
-//        mPopupWindow.setFocusable(true);
-//        mPopupWindow.setOutsideTouchable(true);
-//        mGridView = (GridView) popupView.findViewById(R.id.gridview);
-
         mGridView = (GridView) findViewById(R.id.gridview);
         mButtonLeft.setOnClickListener(this);
         mButtonRight.setOnClickListener(this);
@@ -88,7 +74,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     try {
                         Field field = clazz.getDeclaredField(s);
                         id = field.getInt(s);
-
                     } catch (NoSuchFieldException e) {
                         e.printStackTrace();
                     } catch (IllegalAccessException e) {
@@ -157,8 +142,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     private void showListViewRight() {
         ChatMessage dataRight = new ChatMessage();
+        //设置时间
         dataRight.setTextViewTime(System.currentTimeMillis());
+        //设置头衔
         dataRight.setTextViewHonour("营长");
+        //设置昵称
         dataRight.setTextviewName("虫虫");
         /*
         判断发送的消息是否为空，如果为空则弹出提示不允许发送
@@ -167,7 +155,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Toast.makeText(getApplicationContext(), "发送的消息不能为空！", Toast.LENGTH_SHORT).show();
             return;
         }
+        //设置发送内容
         dataRight.setTextViewInput(filterHtml(Html.toHtml(mEditTextInput.getText())));
+        //设置消息发送方
         dataRight.setType(MessageAdapter.SEND_RIGHT);
         mMessageAdapter.notifyDataSetChanged();
         mData.add(dataRight);
